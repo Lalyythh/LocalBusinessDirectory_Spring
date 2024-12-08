@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityBizz | Local Business Directory</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Premium Font Selections -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icon Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --citybiz-primary: #2c3e50;
+            --citybiz-secondary: #34495e;
+            --citybiz-accent: #3498db;
+            --citybiz-background: #ecf0f1;
+            --citybiz-text: #2c3e50;
+            --citybiz-highlight: #2980b9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(
+                135deg, 
+                var(--citybiz-background) 0%, 
+                #f8f9fa 100%
+            );
+            color: var(--citybiz-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .citybiz-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Modern Header */
+        .citybiz-header {
+            background: linear-gradient(
+                to right, 
+                var(--citybiz-primary), 
+                var(--citybiz-secondary)
+            );
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        .citybiz-header {
+              background: linear-gradient(to right, var(--citybiz-primary), var(--citybiz-secondary));
+              color: white;
+              padding: 20px; /* Adjust padding as needed */
+              display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space between logo and buttons */
+}
+        .citybiz-logo {
+              max-width: 150px; /* Set a maximum width for the logo */
+              margin-right: auto; /* Push the logo to the left */
+        }
+
+        .citybiz-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .citybiz-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .citybiz-subtitle {
+            font-size: 1.4em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Advanced Search Section */
+        .citybiz-search-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .citybiz-search-input {
+            width: 100%;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border: 2px solid var(--citybiz-accent);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .citybiz-search-input:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.2);
+        }
+
+        /* Feature Cards */
+        .citybiz-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .citybiz-feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--citybiz-accent);
+        }
+
+        .citybiz-feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .citybiz-feature-icon {
+            font-size: 3em;
+            color: var(--citybiz-accent);
+            margin-bottom: 20px;
+        }
+
+        /* Call to Action */
+        .citybiz-cta {
+            background: linear-gradient(
+                to right, 
+                var(--citybiz-primary), 
+                var(--citybiz-secondary)
+            );
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 50px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .citybiz-cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .citybiz-cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--citybiz-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.6s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .citybiz-cta-button:hover {
+            transform: scale(1.05);
+            background: var(--citybiz-highlight);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .citybiz-title {
+                font-size: 2.5em;
+            }
+
+            .citybiz-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .animate-citybiz {
+            opacity: 0;
+            animation: fadeInUp 1s forwards;
+        }
+        /* Add this to your existing <style> section */
+.citybiz-auth-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.citybiz-auth-btn {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.citybiz-login-btn {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.citybiz-signup-btn {
+    background: var(--citybiz-accent);
+    color: white;
+}
+
+.citybiz-login-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.citybiz-signup-btn:hover {
+    background: var(--citybiz-highlight);
+}
+    </style>
+</head>
+<body>
+    <div class="citybiz-container">
+        <!-- Header -->
+        <!-- Modify the header to include auth buttons -->
+<header class="citybiz-header">
+    <div class="citybiz-auth-buttons">
+        <a href="/users/login" class="citybiz-auth-btn citybiz-login-btn">Login</a>
+        <a href="users/register" class="citybiz-auth-btn citybiz-signup-btn">Sign Up</a>
+    </div>
+
+    <div class="citybiz-header-content">
+                <img src="/images/logo.png" alt="CityBiz Logo" style="max-width: 100px; margin-bottom: 20px;">
+                <h1 class="citybiz-title animate-citybiz">CityBizz</h1>
+                <p class="citybiz-subtitle animate-citybiz">Connecting Local Businesses, Empowering Community Growth</p>
+            </div>
+</header>
+
+        <!-- Search Section -->
+        <section class="citybiz-search-section animate-citybiz">
+            <input 
+                type="text" 
+                placeholder="Discover Local Businesses in Your City..." 
+                class="citybiz-search-input"
+                id="citybiz-business-search"
+            >
+            <div id="citybiz-search-results"></div> </section>
+
+        <!-- Feature Cards -->
+        <section class="citybiz-features">
+            <div class="citybiz-feature-card animate-citybiz">
+                <i class="citybiz-feature-icon fas fa-store"></i>
+                <h3>Showcase Your Business</h3>
+                <p>Create a captivating profile to attract clients and partners.</p>
+            </div>
+            <div class="citybiz-feature-card animate-citybiz">
+                <i class="citybiz-feature-icon fas fa-search"></i>
+                <h3>Find Local Services</h3>
+                <p>Explore top local businesses tailored to your needs.</p>
+            </div>
+            <div class="citybiz-feature-card animate-citybiz">
+                <i class="citybiz-feature-icon fas fa-users"></i>
+                <h3>Connect with Locals</h3>
+                <p>Network with local businesses and expand your reach.</p>
+            </div>
+            <div class="citybiz-feature-card animate-citybiz">
+                <i class="citybiz-feature-icon fas fa-chart-line"></i>
+                <h3>Gain Insights</h3>
+                <p>Utilize analytics to enhance your business strategy.</p>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="citybiz-cta animate-citybiz">
+            <h2 class="citybiz-cta-title">Join CityBizz Today!</h2>
+            <a href="/businesses/add" class="citybiz-cta-button">Add Your Business</a>
+        </section>
+    </div>
+
+    <script>
+        // CityBiz Search Functionality
+        const citybizSearchInput = document.getElementById('citybiz-business-search');
+        const citybizSearchResults = document.getElementById('citybiz-search-results');
+
+        citybizSearchInput.addEventListener('input', debounce(function() {
+            const query = this.value.toLowerCase();
+            performCityBizSearch(query);
+        }, 300));
+
+        function performCityBizSearch(query) {
+            const results = [
+                { title: 'City Coffee Shop', description: 'Enjoy the best brews in a cozy atmosphere.' },
+                { title: 'Tech Innovations', description: 'Leading technology solutions for your business.' },
+                { title: 'Fitness Hub', description: 'Join us for a premium fitness experience.' },
+                { title: 'Artisan Bakery', description: 'Savor our delicious baked goods made with love.' },
+                { title: 'ABC Electronics', description: 'A leading electronics store offering gadgets, home appliances, and more.' },
+                { title: 'Pizza Express', description: 'A pizza restaurant known for its delicious crusts and toppings.' },
+                { title: 'Green Thumb Gardening', description: 'Landscaping and gardening services for homes and businesses.' },
+                { title: 'HealthFirst Pharmacy', description: 'A pharmacy offering health consultations, prescription medications, and wellness products.' },
+                { title: 'City Car Rentals', description: 'A car rental service with a variety of vehicles to choose from.' },
+                { title: 'The Book Haven', description: 'A cozy bookstore with a wide selection of books, from fiction to non-fiction.' },
+                { title: 'Elite Fitness Center', description: 'A modern gym offering fitness classes, personal training, and state-of-the-art equipment.' },
+                { title: 'Royal Tailors', description: 'A tailoring service specializing in custom clothing, alterations, and suit fittings.' },
+                { title: 'Sparkle Cleaning Services', description: 'Providing residential and commercial cleaning services with eco-friendly products.' },
+                { title: 'The Coffee Shop', description: 'A local cafe serving coffee, tea, and fresh pastries.' },
+                { title: 'Urban Eats Diner', description: 'A modern diner offering fusion cuisine and all-day breakfast.' },
+                { title: 'Bright Minds Academy', description: 'A tutoring center for K-12 students with a focus on STEM subjects.' },
+                { title: 'Blooming Florist', description: 'Specializes in fresh flowers, bouquets, and floral decorations for events.' },
+                { title: 'Tech Savvy Hub', description: 'A co-working space designed for tech enthusiasts and startups.' },
+                { title: 'Happy Tails Pet Store', description: 'Offers pet food, toys, grooming services, and veterinary consultations.' },
+                { title: 'Serenity Spa & Wellness', description: 'A luxurious spa offering massages, facials, and wellness treatments.' },
+                { title: 'Gadget Garage', description: 'Repair and sales of smartphones, laptops, and gaming devices.' },
+                { title: 'Vogue Fashion Boutique', description: 'A boutique featuring trendy clothing and accessories for all occasions.' },
+                { title: 'Ocean Breeze Restaurant', description: 'Seafood restaurant offering fresh catches and ocean-side dining.' },
+                { title: 'MegaMart Superstore', description: 'A one-stop-shop for groceries, electronics, clothing, and more.' },
+                { title: 'Elite Auto Detailing', description: 'Professional car detailing services to make your vehicle look brand new.' },
+                { title: 'Luxe Jewelry & Gifts', description: 'Elegant jewelry and personalized gifts for all occasions.' },
+                { title: 'GreenLife Organics', description: 'Organic produce, health foods, and eco-friendly household products.' },
+                { title: 'Dynamic Fitness', description: 'A fitness center with advanced equipment, group classes, and personal training.' },
+                { title: 'Artisan Bakery Co.', description: 'A family-owned bakery specializing in artisan bread and pastries.' },
+                { title: 'Sunshine Travel Agency', description: 'Providing tailored travel packages, flights, and vacation planning.' },
+                { title: 'Harmony Music School', description: 'Music lessons for children and adults with experienced instructors.' },
+                { title: 'The Gadget Zone', description: 'A store specializing in electronics and accessories for modern living.' },
+                { title: 'The Home Chef Market', description: 'Fresh ingredients and meal kits for easy home cooking.' },
+                { title: 'Luxury Stay Hotel', description: 'A premium hotel offering deluxe accommodations and top-notch service.' }
+
+            ].filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.description.toLowerCase().includes(query)
+            );
+
+            citybizSearchResults.innerHTML = results.length > 0 
+                ? results.map(result => `
+                    <div class="search-result-item">
+                        <h3>${result.title}</h3>
+                        <p>${result.description}</p>
+                    </div>
+                `).join('')
+                : '<p>No results found.</p>';
+        }
+
+        function debounce(func, delay) {
+            let debounceTimer;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => func.apply(context, args), delay);
+            }
+        }
+
+        // Scroll-triggered animations
+        const citybizAnimatedElements = document.querySelectorAll('.animate-citybiz');
+        const citybizObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fadeInUp');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        citybizAnimatedElements.forEach(el => citybizObserver.observe(el));
+    </script>
+</body>
+</html>

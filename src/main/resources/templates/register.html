@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Local Business Directory</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <style>
+        :root {
+            /* Modern Color Palette */
+            --primary-color: #3b82f6;
+            --secondary-color: #10b981;
+            --background-color: #f0f9ff;
+            --text-color: #1f2937;
+            --accent-color: #6366f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(
+                135deg, 
+                #e0f2fe 0%, 
+                #bae6fd 50%, 
+                #7dd3fc 100%
+            );
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.1),
+                0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .register-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 35px 60px -15px rgba(0, 0, 0, 0.15),
+                0 15px 20px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .register-title {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .register-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .login-link {
+            margin-top: 20px;
+            color: var(--text-color);
+        }
+
+        .login-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .login-link a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .message {
+            margin-bottom: 20px;
+        }
+
+        .message p {
+            font-size: 14px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .error-message {
+            color: #ef4444;
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+
+        .success-message {
+            color: var(--secondary-color);
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .register-container {
+                padding: 30px;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container animate__animated animate__fadeIn">
+        <h2 class="register-title animate__animated animate__bounceIn">
+            Create Your Account
+        </h2>
+        
+        <!-- Message Display -->
+        <div class="message">
+            <p th:if="${error}" class="error-message" th:text="${error}"></p>
+            <p th:if="${message}" class="success-message" th:text="${message}"></p>
+        </div>
+        
+        <form action="/users/register" method="post">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input 
+                    type="text" 
+                    name="username" 
+                    id="username" 
+                    placeholder="Choose a unique username"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    placeholder="Enter your email"
+                    required
+                >
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    placeholder="Create a strong password"
+                    required
+                >
+            </div>
+            
+            <button type="submit" class="register-button">
+                Create Account
+            </button>
+        </form>
+        
+        <div class="login-link">
+            Already have an account? 
+            <a href="/users/login">Login here</a>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Input Field Interactions
+        const inputs = document.querySelectorAll('input');
+        
+        inputs.forEach(input => {
+            // Advanced Focus and Blur Effects
+            input.addEventListener('focus', function() {
+                this.style.transform = 'scale(1.01)';
+                this.style.boxShadow = '0 0 10px rgba(59, 130, 246, 0.2)';
+                this.style.borderColor = '#3b82f6';
+            });
+
+            input.addEventListener('blur', function() {
+                this.style.transform = 'scale(1)';
+                this.style.boxShadow = 'none';
+                this.style.borderColor = '#e5e7eb';
+            });
+
+            // Real-time Validation Indicators
+            input.addEventListener('input', function() {
+                validateInput(this);
+            });
+        });
+
+        // Password Strength Indicator
+        const passwordInput = document.getElementById('password');
+        passwordInput.addEventListener('input', function() {
+            const strength = calculatePasswordStrength(this.value);
+            updatePasswordStrengthUI(strength);
+        });
+
+        // Form Submission Animation
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(e) {
+            // Prevent multiple submissions
+            const submitButton = this.querySelector('button');
+            if (submitButton.disabled) {
+                e.preventDefault();
+                return;
+            }
+
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = `
+                <span class="spinner">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke-width="4" style="stroke-opacity: 0.3;"></circle>
+                        <path d="M12 2a10 10 0 0 1 10 10" stroke-width="4" stroke-linecap="round"></path>
+                    </svg>
+                    Processing...
+                </span>
+            `;
+
+            // Optional: Add vibration feedback on mobile
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50);
+            }
+        });
+
+        // Dynamic Background Interaction
+        const body = document.body;
+        body.addEventListener('mousemove', createMouseMovementEffect);
+
+        // Clipboard Copy Protection
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            showToast('Copying is disabled');
+        });
+    });
+
+    // Password Strength Calculator
+    function calculatePasswordStrength(password) {
+        let strength = 0;
+        if (password.length > 7) strength++;
+        if (password.match(/[a-z]+/)) strength++;
+        if (password.match(/[A-Z]+/)) strength++;
+        if (password.match(/[0-9]+/)) strength++;
+        if (password.match(/[$@#&!]+/)) strength++;
+        return strength;
+    }
+
+    // Update Password Strength UI
+    function updatePasswordStrengthUI(strength) {
+        const passwordInput = document.getElementById('password');
+        const colors = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#10b981'];
+        
+        passwordInput.style.borderColor = colors[strength] || '#e5e7eb';
+        
+        // Could add a strength meter if desired
+    }
+
+    // Input Validation
+    function validateInput(input) {
+        const validationRules = {
+            'username': /^[a-zA-Z0-9_]{3,16}$/,
+            'email': /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            'password': /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/
+        };
+
+        const rule = validationRules[input.name];
+        if (rule) {
+            if (rule.test(input.value)) {
+                input.style.borderColor = '#10b981';
+            } else {
+                input.style.borderColor = '#ef4444';
+            }
+        }
+    }
+
+    // Mouse Movement Background Effect
+    function createMouseMovementEffect(e) {
+        const body = document.body;
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        body.style.backgroundImage = `
+            radial-gradient(
+                circle at ${mouseX}px ${mouseY}px, 
+                rgba(59, 130, 246, 0.1), 
+                transparent 50%
+            )
+        `;
+    }
+
+    // Toast Notification
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ef4444;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            animation: fadeIn 0.3s, fadeOut 0.3s 2.5s forwards;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        // Remove toast after animation
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 3000);
+    }
+
+    // Add CSS for animations
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+        .spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .spinner svg {
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+</script>
+</body>
+</html>
